@@ -1,11 +1,12 @@
-<!-- profile.component.html -->
-<div class="profile-layout">
-  <nav class="profile-nav">
-    <a routerLink="stats" routerLinkActive="active">📊 Stats</a>
-    <a routerLink="settings" routerLinkActive="active">⚙️ Settings</a>
-  </nav>
+<div class="container py-4">
+  <ul class="nav nav-tabs mb-4">
+    <li class="nav-item">
+      <a class="nav-link" routerLink="stats" routerLinkActive="active">📊 {{ t()['statsNav'] }}</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="settings" routerLinkActive="active">⚙️ {{ t()['settings'] }}</a>
+    </li>
+  </ul>
 
-  <main class="profile-content">
-    <router-outlet />
-  </main>
+  <router-outlet />
 </div>

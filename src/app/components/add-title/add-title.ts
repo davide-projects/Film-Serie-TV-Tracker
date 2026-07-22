@@ -3,6 +3,7 @@ import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Genres } from '../../services/genres/genres.service';
 import { List } from '../../services/stats/list.service';
+import { TranslationService } from '../../services/translation/translation.service';
 import { Title, ListItem } from '../../models/models';
 
 @Component({
@@ -16,6 +17,7 @@ export class AddTitle implements OnInit {
   private readonly router = inject(Router);
   protected readonly genresService = inject(Genres);
   private readonly listService = inject(List);
+  protected readonly t = inject(TranslationService).t;
 
   form = this.fb.group({
     title: ['', [Validators.required, Validators.minLength(1)]],

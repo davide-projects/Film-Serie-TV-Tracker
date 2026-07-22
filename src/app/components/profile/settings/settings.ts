@@ -2,6 +2,7 @@ import { Component, inject, effect, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Settings as SettingsService } from '../../../services/settings/settings.service';
+import { TranslationService } from '../../../services/translation/translation.service';
 
 @Component({
   selector: 'app-settings',
@@ -11,6 +12,7 @@ import { Settings as SettingsService } from '../../../services/settings/settings
 })
 export class Settings {
   protected readonly settingsService = inject(SettingsService);
+  protected readonly t = inject(TranslationService).t;
   private readonly platformId = inject(PLATFORM_ID);
 
   constructor() {

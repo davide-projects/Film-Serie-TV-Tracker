@@ -1,62 +1,66 @@
-<div class="add-title-page">
-  <h1>Add a title</h1>
+<div class="container py-4">
+  <h1 class="mb-4">{{ t()['addTitle'] }}</h1>
 
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
-    <div class="form-row">
-      <label for="title">Title</label>
-      <input id="title" type="text" formControlName="title" />
-      @if (form.controls.title.invalid && form.controls.title.touched) {
-        <span class="error">Title is required</span>
-      }
+        <div class="mb-3">
+          <label for="title" class="form-label">{{ t()['title'] }}</label>
+          <input id="title" type="text" class="form-control" formControlName="title" />
+          @if (form.controls.title.invalid && form.controls.title.touched) {
+            <div class="text-danger small mt-1">{{ t()['titleRequired'] }}</div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <span class="form-label d-block">{{ t()['type'] }}</span>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" formControlName="type" value="movie" id="typeMovie" />
+            <label class="form-check-label" for="typeMovie">{{ t()['movie'] }}</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" formControlName="type" value="series" id="typeSeries" />
+            <label class="form-check-label" for="typeSeries">{{ t()['series'] }}</label>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="genre" class="form-label">{{ t()['genre'] }}</label>
+          <select id="genre" class="form-select" formControlName="genre">
+            <option value="" disabled>{{ t()['selectGenre'] }}</option>
+            @for (g of genresService.items(); track g.id) {
+              <option [value]="g.name">{{ g.name }}</option>
+            }
+          </select>
+          @if (form.controls.genre.invalid && form.controls.genre.touched) {
+            <div class="text-danger small mt-1">{{ t()['genreRequired'] }}</div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label for="year" class="form-label">{{ t()['year'] }}</label>
+          <input id="year" type="number" class="form-control" formControlName="year" />
+          @if (form.controls.year.invalid && form.controls.year.touched) {
+            <div class="text-danger small mt-1">{{ t()['validYear'] }}</div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label for="rate" class="form-label">{{ t()['rating'] }}</label>
+          <input id="rate" type="number" class="form-control" min="0" max="10" formControlName="rate" />
+          @if (form.controls.rate.invalid && form.controls.rate.touched) {
+            <div class="text-danger small mt-1">{{ t()['ratingError'] }}</div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label for="notes" class="form-label">{{ t()['notes'] }}</label>
+          <textarea id="notes" class="form-control" rows="3" formControlName="notes"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">{{ t()['save'] }}</button>
+      </form>
     </div>
-
-    <div class="form-row">
-      <span>Type</span>
-      <label>
-        <input type="radio" formControlName="type" value="movie" />
-        Movie
-      </label>
-      <label>
-        <input type="radio" formControlName="type" value="series" />
-        Series
-      </label>
-    </div>
-
-    <div class="form-row">
-      <label for="genre">Genre</label>
-      <select id="genre" formControlName="genre">
-        <option value="" disabled>Select a genre</option>
-        @for (g of genresService.items(); track g.id) {
-          <option [value]="g.name">{{ g.name }}</option>
-        }
-      </select>
-      @if (form.controls.genre.invalid && form.controls.genre.touched) {
-        <span class="error">Genre is required</span>
-      }
-    </div>
-
-    <div class="form-row">
-      <label for="year">Year</label>
-      <input id="year" type="number" formControlName="year" />
-      @if (form.controls.year.invalid && form.controls.year.touched) {
-        <span class="error">Enter a valid year</span>
-      }
-    </div>
-
-    <div class="form-row">
-      <label for="rate">Your rating (0-10)</label>
-      <input id="rate" type="number" min="0" max="10" formControlName="rate" />
-      @if (form.controls.rate.invalid && form.controls.rate.touched) {
-        <span class="error">Rating must be between 0 and 10</span>
-      }
-    </div>
-
-    <div class="form-row">
-      <label for="notes">Notes</label>
-      <textarea id="notes" formControlName="notes"></textarea>
-    </div>
-
-    <button type="submit">Save</button>
-  </form>
+  </div>
 </div>
