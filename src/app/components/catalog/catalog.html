@@ -1,1 +1,30 @@
-<p>catalog works!</p>
+<table class="table table-bordered table-striped table-hover align-middle">
+  <thead class="table-light">
+    <tr>
+      <th>#</th>
+      <th>Titolo</th>
+      <th>Tipo</th>
+      <th>Genere</th>
+      <th>Anno</th>
+      <th>Durata</th>
+      <th>Voto</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (t of titles; track t.id) {
+      <tr>
+        <td>{{ t.id }}</td>
+        <td>{{ t.title }}</td>
+        <td>{{ t.type }}</td>
+        <td>{{ t.genre }}</td>
+        <td>{{ t.year }}</td>
+        <td>{{ t.duration }} min</td>
+        <td>{{ t.rate }}</td>
+      </tr>
+    } @empty {
+      <tr>
+        <td colspan="7" class="text-center">Nessun titolo.</td>
+      </tr>
+    }
+  </tbody>
+</table>
