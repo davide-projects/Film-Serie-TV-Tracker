@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { DecimalPipe } from '@angular/common';
 import { Stats as StatsService } from '../../../services/stats/stats';
+import { TranslationService } from '../../../services/translation/translation.service';
 
 @Component({
   selector: 'app-stats',
@@ -11,5 +12,5 @@ import { Stats as StatsService } from '../../../services/stats/stats';
 })
 export class Stats {
   protected readonly statsService = inject(StatsService);
-
+  protected readonly t = inject(TranslationService).t;
 }

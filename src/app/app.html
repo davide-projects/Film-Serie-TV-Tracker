@@ -1,11 +1,11 @@
 <header class="main-nav">
-  <nav><a routerLink="/">🎬 MovieTracker</a></nav>
+  <a routerLink="/">{{ t()['appTitle'] }}</a>
   <nav>
-    <a class="btn btn-warning" routerLink="/catalog" routerLinkActive="active">Catalog</a>
-    <a class="btn btn-warning"  routerLink="/my-list" routerLinkActive="active">My List</a>
-    <a class="btn btn-warning"  routerLink="/search" routerLinkActive="active">Search</a>
-    <a class="btn btn-warning"  routerLink="/add" routerLinkActive="active">Add</a>
-    <a class="btn btn-warning"  routerLink="/profile" routerLinkActive="active">Profile</a>
+    <a class="btn btn-warning" routerLink="/catalog" routerLinkActive="active">{{ t()['catalog'] }}</a>
+    <a class="btn btn-warning" routerLink="/my-list" routerLinkActive="active">{{ t()['myList'] }}</a>
+    <a class="btn btn-warning" routerLink="/search" routerLinkActive="active">{{ t()['search'] }}</a>
+    <a class="btn btn-warning" routerLink="/add" routerLinkActive="active">{{ t()['add'] }}</a>
+    <a class="btn btn-warning" routerLink="/profile" routerLinkActive="active">{{ t()['profile'] }}</a>
   </nav>
 </header>
 

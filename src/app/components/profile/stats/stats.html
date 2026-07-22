@@ -1,23 +1,35 @@
-<div class="stats-page">
-  <h1>Your Stats</h1>
+<div>
+  <h1 class="mb-4">{{ t()['yourStats'] }}</h1>
 
   @if (statsService.totalWatched() === 0) {
-    <p>You haven't marked any titles as watched yet.</p>
+    <div class="alert alert-info">{{ t()['noWatched'] }}</div>
   } @else {
-    <div class="stats-grid">
-      <div class="stat-card">
-        <span class="stat-value">{{ statsService.totalWatched() }}</span>
-        <span class="stat-label">Titles watched</span>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card text-center shadow-sm h-100">
+          <div class="card-body">
+            <div class="display-6 fw-bold text-primary">{{ statsService.totalWatched() }}</div>
+            <div class="text-muted mt-2">{{ t()['titlesWatched'] }}</div>
+          </div>
+        </div>
       </div>
 
-      <div class="stat-card">
-        <span class="stat-value">{{ statsService.totalHours() | number }}</span>
-        <span class="stat-label">Total hours</span>
+      <div class="col-md-4">
+        <div class="card text-center shadow-sm h-100">
+          <div class="card-body">
+            <div class="display-6 fw-bold text-primary">{{ statsService.totalHours() | number }}</div>
+            <div class="text-muted mt-2">{{ t()['totalHours'] }}</div>
+          </div>
+        </div>
       </div>
 
-      <div class="stat-card">
-        <span class="stat-value">{{ statsService.favoriteGenre() }}</span>
-        <span class="stat-label">Favorite genre</span>
+      <div class="col-md-4">
+        <div class="card text-center shadow-sm h-100">
+          <div class="card-body">
+            <div class="display-6 fw-bold text-primary">{{ statsService.favoriteGenre() }}</div>
+            <div class="text-muted mt-2">{{ t()['favoriteGenre'] }}</div>
+          </div>
+        </div>
       </div>
     </div>
   }
