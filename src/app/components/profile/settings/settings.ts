@@ -18,10 +18,7 @@ export class Settings {
       const isDark = this.settingsService.darkMode();
 
       if (isPlatformBrowser(this.platformId)) {
-        document.documentElement.setAttribute(
-          'data-bs-theme',
-          isDark ? 'dark' : 'light'
-        );
+        document.documentElement.dataset['bsTheme'] = isDark ? 'dark' : 'light';
       }
     });
   }
