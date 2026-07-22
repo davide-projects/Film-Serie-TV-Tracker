@@ -1,8 +1,10 @@
 <div class="d-flex flex-column min-vh-100">
   <header class="bg-dark py-5">
     <div class="container-fluid text-center">
-      <a routerLink="/" class="fw-bold text-decoration-none text-white fs-3 d-block mb-4">{{ t()['appTitle'] }}</a>
-      <nav class="d-flex justify-content-center gap-2">
+      <h1 class="mb-0">
+        <a routerLink="/" class="fw-bold text-decoration-none text-white fs-3 d-block mb-4">{{ t()['appTitle'] }}</a>
+      </h1>
+      <nav class="d-flex justify-content-center gap-2" aria-label="Navigazione principale">
         <a class="btn btn-outline-light px-4" routerLink="/catalog" routerLinkActive="btn-warning text-dark border-warning" [routerLinkActiveOptions]="{exact:true}">{{ t()['catalog'] }}</a>
         <a class="btn btn-outline-light px-4" routerLink="/my-list" routerLinkActive="btn-warning text-dark border-warning">{{ t()['myList'] }}</a>
         <a class="btn btn-outline-light px-4" routerLink="/search" routerLinkActive="btn-warning text-dark border-warning">{{ t()['search'] }}</a>

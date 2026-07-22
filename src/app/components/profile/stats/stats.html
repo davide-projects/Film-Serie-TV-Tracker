@@ -1,36 +1,36 @@
-<div>
+<section>
   <h1 class="mb-4">{{ t()['yourStats'] }}</h1>
 
   @if (statsService.totalWatched() === 0) {
-    <div class="alert alert-info">{{ t()['noWatched'] }}</div>
+    <div class="alert alert-info" role="status">{{ t()['noWatched'] }}</div>
   } @else {
     <div class="row g-4">
-      <div class="col-md-4">
+      <article class="col-md-4">
         <div class="card text-center shadow-sm h-100">
           <div class="card-body">
-            <div class="display-6 fw-bold text-primary">{{ statsService.totalWatched() }}</div>
-            <div class="text-muted mt-2">{{ t()['titlesWatched'] }}</div>
+            <data class="display-6 fw-bold text-primary" value="{{ statsService.totalWatched() }}">{{ statsService.totalWatched() }}</data>
+            <p class="text-muted mt-2">{{ t()['titlesWatched'] }}</p>
           </div>
         </div>
-      </div>
+      </article>
 
-      <div class="col-md-4">
+      <article class="col-md-4">
         <div class="card text-center shadow-sm h-100">
           <div class="card-body">
-            <div class="display-6 fw-bold text-primary">{{ statsService.totalHours() | number }}</div>
-            <div class="text-muted mt-2">{{ t()['totalHours'] }}</div>
+            <data class="display-6 fw-bold text-primary" value="{{ statsService.totalHours() }}">{{ statsService.totalHours() | number }}</data>
+            <p class="text-muted mt-2">{{ t()['totalHours'] }}</p>
           </div>
         </div>
-      </div>
+      </article>
 
-      <div class="col-md-4">
+      <article class="col-md-4">
         <div class="card text-center shadow-sm h-100">
           <div class="card-body">
-            <div class="display-6 fw-bold text-primary">{{ statsService.favoriteGenre() }}</div>
-            <div class="text-muted mt-2">{{ t()['favoriteGenre'] }}</div>
+            <data class="display-6 fw-bold text-primary" value="{{ statsService.favoriteGenre() }}">{{ statsService.favoriteGenre() }}</data>
+            <p class="text-muted mt-2">{{ t()['favoriteGenre'] }}</p>
           </div>
         </div>
-      </div>
+      </article>
     </div>
   }
-</div>
+</section>

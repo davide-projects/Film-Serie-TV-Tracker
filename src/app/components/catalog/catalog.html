@@ -7,38 +7,47 @@
   </div>
 }
 
-<table class="table table-bordered table-striped table-hover align-middle">
-  <thead class="table-light">
-    <tr>
-      <th>#</th>
-      <th>{{ t()['title'] }}</th>
-      <th>{{ t()['type'] }}</th>
-      <th>{{ t()['genre'] }}</th>
-      <th>{{ t()['year'] }}</th>
-      <th>{{ t()['duration'] }}</th>
-      <th>{{ t()['catalogRating'] }}</th>
-      <th>{{ t()['interactions'] }}</th>
-    </tr>
-  </thead>
-  <tbody>
-    @for (title of titles(); track title.id) {
-      <tr>
-        <td>{{ title.id }}</td>
-        <td>{{ title.title }}</td>
-        <td>{{ title.type }}</td>
-        <td>{{ title.genre }}</td>
-        <td>{{ title.year }}</td>
-        <td>{{ title.duration }} min</td>
-        <td>{{ title.rate }}</td>
-        <td class="interation-buttons">
-          <button class="btn btn-primary btn-sm" (click)="wip.show()">{{ t()['expand'] }}</button>
-          <button class="btn btn-success btn-sm" (click)="saveTitle(title)">{{ t()['save'] }}</button>
-        </td>
-      </tr>
-    } @empty {
-      <tr>
-        <td colspan="8" class="text-center">{{ t()['noTitles'] }}</td>
-      </tr>
-    }
-  </tbody>
-</table>
+<section>
+  <h1 class="mb-4">{{ t()['catalog'] }}</h1>
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped table-hover align-middle">
+      <caption class="visually-hidden">{{ t()['catalog'] }}</caption>
+      <thead class="table-light">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">{{ t()['title'] }}</th>
+          <th scope="col">{{ t()['type'] }}</th>
+          <th scope="col">{{ t()['genre'] }}</th>
+          <th scope="col">{{ t()['year'] }}</th>
+          <th scope="col">{{ t()['duration'] }}</th>
+          <th scope="col">{{ t()['catalogRating'] }}</th>
+          <th scope="col">{{ t()['interactions'] }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (title of titles(); track title.id) {
+          <tr>
+            <th scope="row">{{ title.id }}</th>
+            <td>{{ title.title }}</td>
+            <td>{{ title.type === 'movie' ? t()['movie'] : t()['series'] }}</td>
+            <td>{{ translationService.genreName(title.genre) }}</td>
+            <td><time>{{ title.year }}</time></td>
+            <td>{{ title.duration }} {{ t()['minutes'] }}</td>
+            <td>{{ title.rate }}</td>
+            <td class="interation-buttons">
+              <button class="btn btn-primary btn-sm" (click)="wip.show()">{{ t()['expand'] }}</button>
+              <button class="btn btn-success btn-sm" (click)="saveTitle(title)">{{ t()['save'] }}</button>
+              @if (isUserTitle(title.id)) {
+                <button class="btn btn-danger btn-sm" (click)="deleteTitle(title)">{{ t()['delete'] }}</button>
+              }
+            </td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="8" class="text-center">{{ t()['noTitles'] }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</section>

@@ -1,4 +1,4 @@
-<div class="container py-4">
+<section class="container py-4">
   <h1 class="mb-4">{{ t()['addTitle'] }}</h1>
 
   @if (feedback()) {
@@ -8,66 +8,81 @@
     </div>
   }
 
-  <div class="card shadow-sm">
+  <article class="card shadow-sm">
     <div class="card-body">
-      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+        <fieldset>
+          <legend class="visually-hidden">{{ t()['addTitle'] }}</legend>
+          <div class="row g-3">
+            <div class="col-md-8">
+              <label for="title" class="form-label">{{ t()['title'] }}</label>
+              <input id="title" type="text" class="form-control" formControlName="title" />
+              @if (form.controls.title.invalid && form.controls.title.touched) {
+                <div class="text-danger small mt-1" role="alert">{{ t()['titleRequired'] }}</div>
+              }
+            </div>
 
-        <div class="mb-3">
-          <label for="title" class="form-label">{{ t()['title'] }}</label>
-          <input id="title" type="text" class="form-control" formControlName="title" />
-          @if (form.controls.title.invalid && form.controls.title.touched) {
-            <div class="text-danger small mt-1">{{ t()['titleRequired'] }}</div>
-          }
-        </div>
+            <div class="col-md-4">
+              <span class="form-label d-block">{{ t()['type'] }}</span>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" formControlName="type" value="movie" id="typeMovie" />
+                <label class="form-check-label" for="typeMovie">{{ t()['movie'] }}</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" formControlName="type" value="series" id="typeSeries" />
+                <label class="form-check-label" for="typeSeries">{{ t()['series'] }}</label>
+              </div>
+            </div>
 
-        <div class="mb-3">
-          <span class="form-label d-block">{{ t()['type'] }}</span>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" formControlName="type" value="movie" id="typeMovie" />
-            <label class="form-check-label" for="typeMovie">{{ t()['movie'] }}</label>
+            <div class="col-md-6">
+              <label for="genre" class="form-label">{{ t()['genre'] }}</label>
+              <select id="genre" class="form-select" formControlName="genre">
+                <option value="" disabled>{{ t()['selectGenre'] }}</option>
+                @for (g of genresService.items(); track g.id) {
+                  <option [value]="g.name">{{ translationService.genreName(g.name) }}</option>
+                }
+              </select>
+              @if (form.controls.genre.invalid && form.controls.genre.touched) {
+                <div class="text-danger small mt-1" role="alert">{{ t()['genreRequired'] }}</div>
+              }
+            </div>
+
+            <div class="col-md-3">
+              <label for="year" class="form-label">{{ t()['year'] }}</label>
+              <input id="year" type="number" class="form-control" formControlName="year" />
+              @if (form.controls.year.invalid && form.controls.year.touched) {
+                <div class="text-danger small mt-1" role="alert">{{ t()['validYear'] }}</div>
+              }
+            </div>
+
+            <div class="col-md-3">
+              <label for="durationHours" class="form-label">{{ t()['durationHours'] }}</label>
+              <input id="durationHours" type="number" class="form-control" min="0" max="100" step="0.5" formControlName="durationHours" />
+              @if (form.controls.durationHours.invalid && form.controls.durationHours.touched) {
+                <div class="text-danger small mt-1" role="alert">{{ t()['durationError'] }}</div>
+              }
+            </div>
+
+            <div class="col-md-6">
+              <label for="rate" class="form-label">{{ t()['rating'] }}</label>
+              <input id="rate" type="number" class="form-control" min="0" max="10" formControlName="rate" />
+              @if (form.controls.rate.invalid && form.controls.rate.touched) {
+                <div class="text-danger small mt-1" role="alert">{{ t()['ratingError'] }}</div>
+              }
+            </div>
+
+            <div class="col-12">
+              <label for="notes" class="form-label">{{ t()['notes'] }}</label>
+              <textarea id="notes" class="form-control" rows="3" formControlName="notes"></textarea>
+            </div>
+
+            <div class="col-12 d-flex justify-content-end gap-2">
+              <button type="button" class="btn btn-secondary" (click)="form.reset()">{{ t()['reset'] }}</button>
+              <button type="submit" class="btn btn-primary px-4">{{ t()['save'] }}</button>
+            </div>
           </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" formControlName="type" value="series" id="typeSeries" />
-            <label class="form-check-label" for="typeSeries">{{ t()['series'] }}</label>
-          </div>
-        </div>
-
-        <div class="mb-3">
-          <label for="genre" class="form-label">{{ t()['genre'] }}</label>
-          <select id="genre" class="form-select" formControlName="genre">
-            <option value="" disabled>{{ t()['selectGenre'] }}</option>
-            @for (g of genresService.items(); track g.id) {
-              <option [value]="g.name">{{ g.name }}</option>
-            }
-          </select>
-          @if (form.controls.genre.invalid && form.controls.genre.touched) {
-            <div class="text-danger small mt-1">{{ t()['genreRequired'] }}</div>
-          }
-        </div>
-
-        <div class="mb-3">
-          <label for="year" class="form-label">{{ t()['year'] }}</label>
-          <input id="year" type="number" class="form-control" formControlName="year" />
-          @if (form.controls.year.invalid && form.controls.year.touched) {
-            <div class="text-danger small mt-1">{{ t()['validYear'] }}</div>
-          }
-        </div>
-
-        <div class="mb-3">
-          <label for="rate" class="form-label">{{ t()['rating'] }}</label>
-          <input id="rate" type="number" class="form-control" min="0" max="10" formControlName="rate" />
-          @if (form.controls.rate.invalid && form.controls.rate.touched) {
-            <div class="text-danger small mt-1">{{ t()['ratingError'] }}</div>
-          }
-        </div>
-
-        <div class="mb-3">
-          <label for="notes" class="form-label">{{ t()['notes'] }}</label>
-          <textarea id="notes" class="form-control" rows="3" formControlName="notes"></textarea>
-        </div>
-
-        <button type="submit" class="btn btn-primary">{{ t()['save'] }}</button>
+        </fieldset>
       </form>
     </div>
-  </div>
-</div>
+  </article>
+</section>
