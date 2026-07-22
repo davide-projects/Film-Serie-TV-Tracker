@@ -1,14 +1,40 @@
 <header class="main-nav">
-  <a routerLink="/">🎬 MovieTracker</a>
+  <div><a routerLink="/">🎬 MovieTracker</a></div>
   <nav>
-    <a routerLink="/catalog" routerLinkActive="active">Catalog</a>
-    <a routerLink="/my-list" routerLinkActive="active">My List</a>
-    <a routerLink="/search" routerLinkActive="active">Search</a>
-    <a routerLink="/add" routerLinkActive="active">Add</a>
-    <a routerLink="/profile" routerLinkActive="active">Profile</a>
+    <a class="btn btn-warning" routerLink="/catalog" routerLinkActive="active">Catalog</a>
+    <a class="btn btn-warning"  routerLink="/my-list" routerLinkActive="active">My List</a>
+    <a class="btn btn-warning"  routerLink="/search" routerLinkActive="active">Search</a>
+    <a class="btn btn-warning"  routerLink="/add" routerLinkActive="active">Add</a>
+    <a class="btn btn-warning"  routerLink="/profile" routerLinkActive="active">Profile</a>
   </nav>
 </header>
 
 <main>
   <router-outlet />
 </main>
+
+<footer>
+  <div>
+    <h6>Movie-Tracker</h6>
+    <p>Altro che laravel</p>
+  </div>
+  <div>
+    <h6>Legal</h6>
+    <small>
+      <ul>
+        <li><a href="https://www.youtube.com/watch?v=Sagg08DrO5U&t=673s">Privacy Policy</a></li>
+        <li><a href="https://www.youtube.com/watch?v=Sagg08DrO5U&t=673s">Cookie Policy</a></li>
+        <li><a href="https://www.youtube.com/watch?v=Sagg08DrO5U&t=673s">Terms and conditions</a></li>
+      </ul>
+    </small>
+  </div>
+  <div>
+    <h6>
+      &copy;
+      MovieTracker
+    </h6>
+    <h6>
+      Tutti i diritti riservati
+    </h6>
+  </div>
+</footer>
