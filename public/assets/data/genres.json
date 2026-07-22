@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "name": "Fantascienza",
+    "emoji": "🚀"
+  },
+  {
+    "id": 2,
+    "name": "Azione",
+    "emoji": "💥"
+  },
+  {
+    "id": 3,
+    "name": "Crime",
+    "emoji": "🔍"
+  },
+  {
+    "id": 4,
+    "name": "Thriller",
+    "emoji": "🔪"
+  }
+]
