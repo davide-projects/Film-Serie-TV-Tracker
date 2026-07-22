@@ -11,7 +11,7 @@
     </tr>
   </thead>
   <tbody>
-    @for (title of titles; track title.id) {
+    @for (title of titles(); track title.id) {
       <tr>
         <td>{{ title.id }}</td>
         <td>{{ title.title }}</td>
