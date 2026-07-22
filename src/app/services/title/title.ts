@@ -5,7 +5,7 @@ import { Title } from '../../models/models';
 
 @Injectable({ providedIn: 'root' })
 export class TitleService {
-  private http = inject(HttpClient);
+  private readonly http = inject(HttpClient);
 
   getTitles(): Observable<Title[]> {
     return this.http.get<Title[]>("assets/data/titles.json");

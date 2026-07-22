@@ -1,1 +1,46 @@
-<p>my-list works!</p>
+<div class="container py-4">
+  <h1 class="mb-4">{{ t()['myListTitle'] }}</h1>
+
+  <app-work-in-progress #wip />
+
+  @if (feedback()) {
+    <div class="alert alert-info alert-dismissible fade show" role="alert">
+      {{ feedback() }}
+      <button type="button" class="btn-close" (click)="feedback.set('')"></button>
+    </div>
+  }
+
+  @if (listService.items().length === 0) {
+    <div class="alert alert-info">{{ t()['myListEmpty'] }}</div>
+  } @else {
+    <table class="table table-bordered table-striped table-hover align-middle">
+      <thead class="table-light">
+        <tr>
+          <th>#</th>
+          <th>{{ t()['title'] }}</th>
+          <th>{{ t()['type'] }}</th>
+          <th>{{ t()['genre'] }}</th>
+          <th>{{ t()['year'] }}</th>
+          <th>{{ t()['status'] }}</th>
+          <th>{{ t()['interactions'] }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of listService.items(); track item.title.id) {
+          <tr>
+            <td>{{ item.title.id }}</td>
+            <td>{{ item.title.title }}</td>
+            <td>{{ item.title.type }}</td>
+            <td>{{ item.title.genre }}</td>
+            <td>{{ item.title.year }}</td>
+            <td>{{ item.status === 'watched' ? t()['watched'] : t()['toWatch'] }}</td>
+            <td>
+              <button class="btn btn-primary btn-sm me-1" (click)="wip.show()">{{ t()['expand'] }}</button>
+              <button class="btn btn-danger btn-sm" (click)="removeItem(item.title.id)">{{ t()['delete'] }}</button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+</div>
