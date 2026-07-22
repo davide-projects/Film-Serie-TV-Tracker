@@ -1,35 +1,34 @@
-<div class="container my-4">
-  <h2>🔍 Search Catalog</h2>
+<section class="container my-4">
+  <h2>{{ t()['searchTitle'] }}</h2>
   <div class="my-3">
-    <label for="find"></label>
-    <input 
-      type="text" 
-      class="form-control form-control-lg" 
-      placeholder="Type a movie or series title..."
-      [ngModel]="query()" 
+    <label for="find" class="visually-hidden">{{ t()['searchTitle'] }}</label>
+    <input
+      type="search"
+      class="form-control form-control-lg"
+      [placeholder]="t()['searchPlaceholder']"
+      [ngModel]="query()"
       (ngModelChange)="query.set($event)"
     id="find"/>
   </div>
 
-  <p class="text-muted">Found {{ searchResults().length }} title(s)</p>
+  <p class="text-muted" aria-live="polite">{{ t()['searchFound'] }} {{ searchResults().length }} {{ t()['searchTitles'] }}</p>
 
   @if (searchResults().length > 0) {
-    <div class="search-grid">
+    <div class="search-grid" role="list">
       @for (movie of searchResults(); track movie.id) {
-        <div class="card p-3 shadow-sm h-100 d-flex flex-column justify-content-between">
+        <article class="card p-3 shadow-sm h-100 d-flex flex-column justify-content-between" role="listitem">
           <div>
             <div class="d-flex justify-content-between align-items-start">
-              <!-- Pipe titlecase -->
-              <h5 class="m-0">{{ movie.title | titlecase }}</h5>
-              <span class="badge bg-primary">{{ movie.type }}</span>
+              <h3 class="h5 m-0">{{ movie.title | titlecase }}</h3>
+              <span class="badge bg-primary">{{ movie.type === 'movie' ? t()['movie'] : t()['series'] }}</span>
             </div>
 
             <p class="text-muted small mt-2 mb-1">
-              Year: {{ movie.year }} | 
-              Duration: {{ (movie.duration / 60) | number:'1.1-1' }} hours
+              <time>{{ t()['searchYear'] }} {{ movie.year }}</time> |
+              <time>{{ t()['searchDuration'] }} {{ (movie.duration / 60) | number:'1.1-1' }} {{ t()['searchHours'] }}</time>
             </p>
 
-            <p class="fw-bold text-warning mb-2">⭐ Rating: {{ movie.rate }}/10</p>
+            <p class="fw-bold text-warning mb-2">⭐ {{ t()['searchRating'] }} <data value="{{ movie.rate }}">{{ movie.rate }}/10</data></p>
 
             @if (movie.description) {
               <p class="card-text small text-secondary">{{ movie.description }}</p>
@@ -37,16 +36,16 @@
           </div>
 
           <div class="pt-3 border-top d-flex gap-1 flex-wrap">
-            <button class="btn btn-sm btn-outline-success" (click)="addToList(movie, 'watched')">+ Watched</button>
-            <button class="btn btn-sm btn-outline-info" (click)="addToList(movie, 'to-watch')">+ To Watch</button>
-            <button class="btn btn-sm btn-outline-warning" (click)="addToList(movie, 'favorite')">+ Favorite</button>
+            <button class="btn btn-sm btn-outline-success" (click)="addToList(movie, 'watched')">{{ t()['searchAddWatched'] }}</button>
+            <button class="btn btn-sm btn-outline-info" (click)="addToList(movie, 'to-watch')">{{ t()['searchAddToWatch'] }}</button>
+            <button class="btn btn-sm btn-outline-warning" (click)="addToList(movie, 'favorite')">{{ t()['searchAddFavorite'] }}</button>
           </div>
-        </div>
+        </article>
       }
     </div>
   } @else {
-    <div class="alert alert-warning">
-      No movies found matching "{{ query() }}".
+    <div class="alert alert-warning" role="alert">
+      {{ t()['searchNoResults'] }} "{{ query() }}".
     </div>
   }
-</div>
+</section>
