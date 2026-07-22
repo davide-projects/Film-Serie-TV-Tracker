@@ -1,1 +1,52 @@
-<p>search works!</p>
+<div class="container my-4">
+  <h2>🔍 Search Catalog</h2>
+  <div class="my-3">
+    <label for="find"></label>
+    <input 
+      type="text" 
+      class="form-control form-control-lg" 
+      placeholder="Type a movie or series title..."
+      [ngModel]="query()" 
+      (ngModelChange)="query.set($event)"
+    id="find"/>
+  </div>
+
+  <p class="text-muted">Found {{ searchResults().length }} title(s)</p>
+
+  @if (searchResults().length > 0) {
+    <div class="search-grid">
+      @for (movie of searchResults(); track movie.id) {
+        <div class="card p-3 shadow-sm h-100 d-flex flex-column justify-content-between">
+          <div>
+            <div class="d-flex justify-content-between align-items-start">
+              <!-- Pipe titlecase -->
+              <h5 class="m-0">{{ movie.title | titlecase }}</h5>
+              <span class="badge bg-primary">{{ movie.type }}</span>
+            </div>
+
+            <p class="text-muted small mt-2 mb-1">
+              Year: {{ movie.year }} | 
+              Duration: {{ (movie.duration / 60) | number:'1.1-1' }} hours
+            </p>
+
+            <p class="fw-bold text-warning mb-2">⭐ Rating: {{ movie.rate }}/10</p>
+
+            @if (movie.description) {
+              <p class="card-text small text-secondary">{{ movie.description }}</p>
+            }
+          </div>
+
+          <div class="pt-3 border-top d-flex gap-1 flex-wrap">
+            <button class="btn btn-sm btn-outline-success" (click)="addToList(movie, 'watched')">+ Watched</button>
+            <button class="btn btn-sm btn-outline-info" (click)="addToList(movie, 'to-watch')">+ To Watch</button>
+            <button class="btn btn-sm btn-outline-warning" (click)="addToList(movie, 'favorite')">+ Favorite</button>
+          </div>
+        </div>
+      }
+    </div>
+  } @else {
+    <div class="alert alert-warning">
+      No movies found matching "{{ query() }}".
+    </div>
+  }
+</div>
