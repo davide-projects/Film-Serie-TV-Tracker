@@ -1,0 +1,6 @@
+@if (visible()) {
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    {{ t()['workInProgress'] }}
+    <button type="button" class="btn-close" (click)="hide()"></button>
+  </div>
+}

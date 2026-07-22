@@ -1,14 +1,23 @@
+<app-work-in-progress #wip />
+
+@if (feedback()) {
+  <div class="alert alert-info alert-dismissible fade show" role="alert">
+    {{ feedback() }}
+    <button type="button" class="btn-close" (click)="feedback.set('')"></button>
+  </div>
+}
+
 <table class="table table-bordered table-striped table-hover align-middle">
   <thead class="table-light">
     <tr>
       <th>#</th>
-      <th>Titolo</th>
-      <th>Tipo</th>
-      <th>Genere</th>
-      <th>Anno</th>
-      <th>Durata</th>
-      <th>Voto</th>
-      <th>Interazioni</th>
+      <th>{{ t()['title'] }}</th>
+      <th>{{ t()['type'] }}</th>
+      <th>{{ t()['genre'] }}</th>
+      <th>{{ t()['year'] }}</th>
+      <th>{{ t()['duration'] }}</th>
+      <th>{{ t()['catalogRating'] }}</th>
+      <th>{{ t()['interactions'] }}</th>
     </tr>
   </thead>
   <tbody>
@@ -22,13 +31,13 @@
         <td>{{ title.duration }} min</td>
         <td>{{ title.rate }}</td>
         <td class="interation-buttons">
-          <div class="btn btn-primary">Espandi</div>
-          <div class="btn btn-success">Salva</div>
+          <button class="btn btn-primary btn-sm" (click)="wip.show()">{{ t()['expand'] }}</button>
+          <button class="btn btn-success btn-sm" (click)="saveTitle(title)">{{ t()['save'] }}</button>
         </td>
       </tr>
     } @empty {
       <tr>
-        <td colspan="7" class="text-center">Nessun titolo.</td>
+        <td colspan="8" class="text-center">{{ t()['noTitles'] }}</td>
       </tr>
     }
   </tbody>

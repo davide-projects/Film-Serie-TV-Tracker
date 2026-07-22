@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, signal, OnInit } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Genres } from '../../services/genres/genres.service';
@@ -18,6 +18,7 @@ export class AddTitle implements OnInit {
   protected readonly genresService = inject(Genres);
   private readonly listService = inject(List);
   protected readonly t = inject(TranslationService).t;
+  protected readonly feedback = signal('');
 
   form = this.fb.group({
     title: ['', [Validators.required, Validators.minLength(1)]],
@@ -49,6 +50,11 @@ export class AddTitle implements OnInit {
       duration: 0,
       rate: value.rate!
     };
+
+    if (this.listService.exists(newTitle.id)) {
+      this.feedback.set(this.t()['duplicateTitle']);
+      return;
+    }
 
     const newItem: ListItem = {
       title: newTitle,
