@@ -1,1 +1,25 @@
-<p>settings works!</p>
+<div class="settings-page">
+  <h1>Settings</h1>
+
+  <div class="setting-row">
+    <label for="darkMode">Dark mode</label>
+    <input
+      type="checkbox"
+      id="darkMode"
+      [ngModel]="settingsService.darkMode()"
+      (ngModelChange)="settingsService.toggleDarkMode($event)"
+    />
+  </div>
+
+  <div class="setting-row">
+    <label for="language">Language</label>
+    <select
+      id="language"
+      [ngModel]="settingsService.language()"
+      (ngModelChange)="settingsService.setLanguage($event)"
+    >
+      <option value="it">Italiano</option>
+      <option value="en">English</option>
+    </select>
+  </div>
+</div>

@@ -2,21 +2,21 @@
   {
     "id": 1,
     "name": "Fantascienza",
-    "emoj": "🚀"
+    "emoji": "🚀"
   },
   {
     "id": 2,
     "name": "Azione",
-    "emoj": "💥"
+    "emoji": "💥"
   },
   {
     "id": 3,
     "name": "Crime",
-    "emoj": "🔍"
+    "emoji": "🔍"
   },
   {
     "id": 4,
     "name": "Thriller",
-    "emoj": "🔪"
+    "emoji": "🔪"
   }
 ]

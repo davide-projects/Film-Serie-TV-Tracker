@@ -8,4 +8,8 @@ export class List {
   items() {
     return this._items();
   }
+
+  addItem(item: ListItem): void {
+  this._items.update(items => [...items, item]);
+  }
 }
