@@ -2,7 +2,7 @@ import { Component, inject, signal, computed, OnInit } from '@angular/core';
 import { CommonModule, TitleCasePipe, DecimalPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TitleService } from '../../services/title/title';
-import { List } from '../../services/list';
+import { List } from '../../services/stats/list.service';
 import { Title, ListItem } from '../../models/models';
 
 @Component({
@@ -37,12 +37,10 @@ export class Search implements OnInit {
     return allMovies.filter(movie => movie.title.toLowerCase().includes(text));
   });
 
-  addToList(movie: Title, state: 'watched' | 'to-watch' | 'favorite'): void {
+  addToList(movie: Title, status: 'watched' | 'to-watch' | 'favorite'): void {
     const newItem: ListItem = {
-      id: Date.now(),
-      title: movie.title,
-      state: state,
-      releaseDate: new Date().toISOString()
+      title: movie,
+      status: status,
     };
 
     this.listService.addItem(newItem);

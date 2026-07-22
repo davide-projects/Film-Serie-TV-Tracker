@@ -16,8 +16,8 @@ export interface Title {
 }
 
 export interface ListItem {
-    id: number;
-    title: string;
-    state: 'watched' | 'to-watch' | 'favorite';
+    title: Title;
+    status: 'watched' | 'to-watch' | 'favorite';
     releaseDate?: string;
+    personalNote?: string;
 }
