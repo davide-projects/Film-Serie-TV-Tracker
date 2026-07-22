@@ -16,7 +16,7 @@ export interface Title {
 }
 
 export interface ListItem {
-    title: 'Title';
-    state: 'watched' | 'to-watch' | 'favorite';
+    title: Title;
+    status: 'watched' | 'to-watch' | 'favorite';
     releaseDate?: string
 }

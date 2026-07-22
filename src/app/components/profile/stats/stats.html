@@ -1,1 +1,24 @@
-<p>stats works!</p>
+<div class="stats-page">
+  <h1>Le tue statistiche</h1>
+
+  @if (statsService.totalWatched() === 0) {
+    <p>Non hai ancora segnato nessun titolo come visto.</p>
+  } @else {
+    <div class="stats-grid">
+      <div class="stat-card">
+        <span class="stat-value">{{ statsService.totalWatched() }}</span>
+        <span class="stat-label">Titoli visti</span>
+      </div>
+
+      <div class="stat-card">
+        <span class="stat-value">{{ statsService.totalHours() | number }}</span>
+        <span class="stat-label">Ore totali</span>
+      </div>
+
+      <div class="stat-card">
+        <span class="stat-value">{{ statsService.favoriteGenre() }}</span>
+        <span class="stat-label">Genere preferito</span>
+      </div>
+    </div>
+  }
+</div>
