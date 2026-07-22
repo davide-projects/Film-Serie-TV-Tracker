@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Title } from '../models/models';
+import { Title } from '../../models/models';
 
 @Injectable({ providedIn: 'root' })
 export class TitleService {

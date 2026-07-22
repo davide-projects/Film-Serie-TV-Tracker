@@ -11,15 +11,15 @@
     </tr>
   </thead>
   <tbody>
-    @for (t of titles; track t.id) {
+    @for (title of titles; track title.id) {
       <tr>
-        <td>{{ t.id }}</td>
-        <td>{{ t.title }}</td>
-        <td>{{ t.type }}</td>
-        <td>{{ t.genre }}</td>
-        <td>{{ t.year }}</td>
-        <td>{{ t.duration }} min</td>
-        <td>{{ t.rate }}</td>
+        <td>{{ title.id }}</td>
+        <td>{{ title.title }}</td>
+        <td>{{ title.type }}</td>
+        <td>{{ title.genre }}</td>
+        <td>{{ title.year }}</td>
+        <td>{{ title.duration }} min</td>
+        <td>{{ title.rate }}</td>
       </tr>
     } @empty {
       <tr>

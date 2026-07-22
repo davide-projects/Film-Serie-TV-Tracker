@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { TitleService } from '../../services/title';
+import { TitleService } from '../../services/title/title';
 import { Title } from '../../models/models';
 
 @Component({
