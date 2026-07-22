@@ -5,26 +5,36 @@ const STORAGE_KEY = 'movie-tracker-list';
 
 @Injectable({ providedIn: 'root' })
 export class List {
-  private readonly _items = signal<ListItem[]>(this.load());
+  private readonly itemsSignal = signal<ListItem[]>(this.load());
 
   items() {
-    return this._items();
+    return this.itemsSignal();
   }
 
   exists(id: number): boolean {
-    return this._items().some(item => item.title.id === id);
+    return this.itemsSignal().some(item => item.title.id === id);
   }
 
   addItem(item: ListItem): void {
-    this._items.update(items => {
+    this.itemsSignal.update(items => {
       const updated = [...items, item];
       this.save(updated);
       return updated;
     });
   }
 
+  updateStatus(id: number, status: ListItem['status']): void {
+    this.itemsSignal.update(items => {
+      const updated = items.map(item =>
+        item.title.id === id ? { ...item, status } : item
+      );
+      this.save(updated);
+      return updated;
+    });
+  }
+
   removeItem(id: number): void {
-    this._items.update(items => {
+    this.itemsSignal.update(items => {
       const updated = items.filter(item => item.title.id !== id);
       this.save(updated);
       return updated;
