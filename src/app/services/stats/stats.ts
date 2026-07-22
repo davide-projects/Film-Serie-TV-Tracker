@@ -9,15 +9,15 @@ export class Stats {
     this.listService.items().filter(item => item.status === 'watched')
   );
 
-  totalWatched = computed(() => this.watchedItems().length);
+  readonly totalWatched = computed(() => this.watchedItems().length);
 
-  totalHours = computed(() => {
+  readonly totalHours = computed(() => {
     const minutes = this.watchedItems()
       .reduce((sum, item) => sum + item.title.duration, 0);
     return Math.round(minutes / 60);
   });
 
-  favoriteGenre = computed(() => {
+  readonly favoriteGenre = computed(() => {
     const watched = this.watchedItems();
     if (watched.length === 0) return 'N/A';
 

@@ -1,8 +1,10 @@
 import { Component, inject, signal, computed, OnInit } from '@angular/core';
 import { CommonModule, TitleCasePipe, DecimalPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Meta } from '@angular/platform-browser';
 import { TitleService } from '../../services/title/title';
 import { List } from '../../services/stats/list.service';
+import { TranslationService } from '../../services/translation/translation.service';
 import { Title, ListItem } from '../../models/models';
 
 @Component({
@@ -15,9 +17,15 @@ import { Title, ListItem } from '../../models/models';
 export class Search implements OnInit {
   private readonly titleService = inject(TitleService);
   private readonly listService = inject(List);
+  private readonly meta = inject(Meta);
+  protected readonly t = inject(TranslationService).t;
 
-  query = signal<string>('');
-  catalog = signal<Title[]>([]);
+  readonly query = signal<string>('');
+  readonly catalog = signal<Title[]>([]);
+
+  constructor() {
+    this.meta.updateTag({ name: 'description', content: this.t()['metaSearch'] });
+  }
 
   ngOnInit(): void {
     this.titleService.getTitles().subscribe({

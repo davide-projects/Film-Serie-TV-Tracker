@@ -9,7 +9,7 @@ import { TranslationService } from '../../services/translation/translation.servi
 })
 export class WorkInProgress {
   protected readonly t = inject(TranslationService).t;
-  readonly visible = signal(false);
+  protected readonly visible = signal(false);
 
   show(): void {
     this.visible.set(true);

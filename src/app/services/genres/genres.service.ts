@@ -6,8 +6,8 @@ import { Genre } from '../../models/models';
 export class Genres {
   private readonly http = inject(HttpClient);
 
-  items = signal<Genre[]>([]);
-  loading = signal(false);
+  readonly items = signal<Genre[]>([]);
+  readonly loading = signal(false);
 
   load(): void {
     this.loading.set(true);
