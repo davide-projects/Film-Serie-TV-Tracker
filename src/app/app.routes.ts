@@ -2,7 +2,6 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
 
-  // ── HOME ──────────────────────────────
   {
     path: '',
     loadComponent: () =>
@@ -10,7 +9,6 @@ export const routes: Routes = [
         .then(m => m.Home)
   },
 
-  // ── CATALOG ───────────────────────────
   {
     path: 'catalog',
     loadComponent: () =>
@@ -18,7 +16,6 @@ export const routes: Routes = [
         .then(m => m.Catalog)
   },
 
-  // ── TITLE DETAIL — dynamic route :id ──
   {
     path: 'catalog/:id',
     loadComponent: () =>
@@ -26,7 +23,6 @@ export const routes: Routes = [
         .then(m => m.TitleDetail)
   },
 
-  // ── MY LIST ───────────────────────────
   {
     path: 'my-list',
     loadComponent: () =>
@@ -34,7 +30,6 @@ export const routes: Routes = [
         .then(m => m.MyList)
   },
 
-  // ── SEARCH ────────────────────────────
   {
     path: 'search',
     loadComponent: () =>
@@ -42,7 +37,6 @@ export const routes: Routes = [
         .then(m => m.Search)
   },
 
-  // ── ADD TITLE ─────────────────────────
   {
     path: 'add',
     loadComponent: () =>
@@ -50,7 +44,6 @@ export const routes: Routes = [
         .then(m => m.AddTitle)
   },
 
-  // ── PROFILE — with child routes ───────
   {
     path: 'profile',
     loadComponent: () =>

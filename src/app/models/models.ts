@@ -8,6 +8,7 @@ export interface Title {
     id: number;
     title: string;
     type: 'movie' | 'series';
+    genre: string;
     year: number;
     duration: number;
     rate: number;
@@ -15,7 +16,7 @@ export interface Title {
 }
 
 export interface ListItem {
-    title: 'Title';
-    state: 'watched' | 'to-watch' | 'favorite';
+    title: Title;
+    status: 'watched' | 'to-watch' | 'favorite';
     releaseDate?: string
 }

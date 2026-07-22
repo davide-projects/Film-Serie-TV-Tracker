@@ -5,7 +5,7 @@ import { List } from './list.service';
 export class Stats {
   private readonly listService = inject(List);
 
-  private watchedItems = computed(() =>
+  private readonly watchedItems = computed(() =>
     this.listService.items().filter(item => item.status === 'watched')
   );
 
