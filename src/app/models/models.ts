@@ -1,7 +1,7 @@
 export interface Genre {
     id: number;
     name: string;
-    emoji?: string
+    emoji?: string;
 }
 
 export interface Title {
@@ -16,8 +16,8 @@ export interface Title {
 }
 
 export interface ListItem {
-    title: Title;
-    status: 'watched' | 'to-watch' | 'favorite';
+    id: number;
+    title: string;
+    state: 'watched' | 'to-watch' | 'favorite';
     releaseDate?: string;
-    personalNote?: string;
 }
