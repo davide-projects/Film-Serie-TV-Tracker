@@ -8,6 +8,7 @@ export interface Title {
     id: number;
     title: string;
     type: 'movie' | 'series';
+    genre: string;
     year: number;
     duration: number;
     rate: number;
