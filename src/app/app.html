@@ -1,1 +1,14 @@
-<div class="btn btn-primary">prova</div>
+<header class="main-nav">
+  <a routerLink="/">🎬 MovieTracker</a>
+  <nav>
+    <a routerLink="/catalog" routerLinkActive="active">Catalog</a>
+    <a routerLink="/my-list" routerLinkActive="active">My List</a>
+    <a routerLink="/search" routerLinkActive="active">Search</a>
+    <a routerLink="/add" routerLinkActive="active">Add</a>
+    <a routerLink="/profile" routerLinkActive="active">Profile</a>
+  </nav>
+</header>
+
+<main>
+  <router-outlet />
+</main>
