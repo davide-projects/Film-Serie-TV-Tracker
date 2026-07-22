@@ -8,6 +8,7 @@
       <th>Anno</th>
       <th>Durata</th>
       <th>Voto</th>
+      <th>Interazioni</th>
     </tr>
   </thead>
   <tbody>
@@ -20,6 +21,10 @@
         <td>{{ title.year }}</td>
         <td>{{ title.duration }} min</td>
         <td>{{ title.rate }}</td>
+        <td class="interation-buttons">
+          <div class="btn btn-primary">Espandi</div>
+          <div class="btn btn-success">Salva</div>
+        </td>
       </tr>
     } @empty {
       <tr>
