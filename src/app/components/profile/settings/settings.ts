@@ -1,5 +1,4 @@
-import { Component, inject, effect, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Meta } from '@angular/platform-browser';
 import { Settings as SettingsService } from '../../../services/settings/settings.service';
@@ -14,17 +13,12 @@ import { TranslationService } from '../../../services/translation/translation.se
 export class Settings {
   protected readonly settingsService = inject(SettingsService);
   protected readonly t = inject(TranslationService).t;
-  private readonly platformId = inject(PLATFORM_ID);
   private readonly meta = inject(Meta);
 
   constructor() {
-    this.meta.updateTag({ name: 'description', content: this.t()['metaSettings'] });
-    effect(() => {
-      const isDark = this.settingsService.darkMode();
-
-      if (isPlatformBrowser(this.platformId)) {
-        document.documentElement.dataset['bsTheme'] = isDark ? 'dark' : 'light';
-      }
+    this.meta.updateTag({
+      name: 'description',
+      content: this.t()['metaSettings']
     });
   }
 }

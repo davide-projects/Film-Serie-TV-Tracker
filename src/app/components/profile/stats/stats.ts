@@ -14,7 +14,12 @@ import { TranslationService } from '../../../services/translation/translation.se
 export class Stats {
   protected readonly statsService = inject(StatsService);
   protected readonly t = inject(TranslationService).t;
+  private readonly translationService = inject(TranslationService);
   private readonly meta = inject(Meta);
+
+  protected genreName(name: string): string {
+    return this.translationService.genreName(name);
+  }
 
   constructor() {
     this.meta.updateTag({ name: 'description', content: this.t()['metaStats'] });

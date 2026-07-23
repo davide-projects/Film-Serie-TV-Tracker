@@ -32,7 +32,7 @@ export class Catalog implements OnInit {
         const userTitles = this.titleService.userTitles();
         this.titles.set([...data, ...userTitles]);
       },
-      error: (err) => console.error(err),
+      error: () => this.feedback.set(this.t()['genericError']),
     });
   }
 

@@ -78,6 +78,7 @@ export const it: Record<string, string> = {
   favorite: 'Preferito',
   searchYear: 'Anno:',
   searchDuration: 'Durata:',
+  genericError: 'Si è verificato un errore. Riprova più tardi.',
   genreSciFi: 'Fantascienza',
   genreAction: 'Azione',
   genreCrime: 'Crime',

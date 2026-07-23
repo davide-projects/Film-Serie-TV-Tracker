@@ -1,7 +1,7 @@
 @use './scss-modules/root.scss' as root;
 
-@import './scss-modules/header.scss';
-@import './scss-modules/footer.scss';
+@use './scss-modules/header.scss';
+@use './scss-modules/footer.scss';
 
 *,
 *::before,

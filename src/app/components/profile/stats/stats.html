@@ -2,13 +2,20 @@
   <h1 class="mb-4">{{ t()['yourStats'] }}</h1>
 
   @if (statsService.totalWatched() === 0) {
-    <div class="alert alert-info" role="status">{{ t()['noWatched'] }}</div>
+    <p class="alert alert-info" aria-live="polite">
+      {{ t()['noWatched'] }}
+    </p>
   } @else {
     <div class="row g-4">
       <article class="col-md-4">
         <div class="card text-center shadow-sm h-100">
           <div class="card-body">
-            <data class="display-6 fw-bold text-primary" value="{{ statsService.totalWatched() }}">{{ statsService.totalWatched() }}</data>
+            <data
+              class="display-6 fw-bold text-primary"
+              value="{{ statsService.totalWatched() }}"
+            >
+              {{ statsService.totalWatched() }}
+            </data>
             <p class="text-muted mt-2">{{ t()['titlesWatched'] }}</p>
           </div>
         </div>
@@ -17,7 +24,12 @@
       <article class="col-md-4">
         <div class="card text-center shadow-sm h-100">
           <div class="card-body">
-            <data class="display-6 fw-bold text-primary" value="{{ statsService.totalHours() }}">{{ statsService.totalHours() | number }}</data>
+            <data
+              class="display-6 fw-bold text-primary"
+              value="{{ statsService.totalHours() }}"
+            >
+              {{ statsService.totalHours() | number }}
+            </data>
             <p class="text-muted mt-2">{{ t()['totalHours'] }}</p>
           </div>
         </div>
@@ -26,7 +38,12 @@
       <article class="col-md-4">
         <div class="card text-center shadow-sm h-100">
           <div class="card-body">
-            <data class="display-6 fw-bold text-primary" value="{{ statsService.favoriteGenre() }}">{{ statsService.favoriteGenre() }}</data>
+            <data
+              class="display-6 fw-bold text-primary"
+              value="{{ statsService.favoriteGenre() }}"
+            >
+              {{ genreName(statsService.favoriteGenre()) }}
+            </data>
             <p class="text-muted mt-2">{{ t()['favoriteGenre'] }}</p>
           </div>
         </div>

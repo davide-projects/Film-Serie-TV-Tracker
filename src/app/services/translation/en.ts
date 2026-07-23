@@ -78,6 +78,7 @@ export const en: Record<string, string> = {
   favorite: 'Favorite',
   searchYear: 'Year:',
   searchDuration: 'Duration:',
+  genericError: 'An error occurred. Please try again later.',
   genreSciFi: 'Sci-fi',
   genreAction: 'Action',
   genreCrime: 'Crime',

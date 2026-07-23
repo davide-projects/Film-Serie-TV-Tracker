@@ -22,6 +22,7 @@ export class Search implements OnInit {
 
   readonly query = signal<string>('');
   readonly catalog = signal<Title[]>([]);
+  protected readonly feedback = signal('');
 
   constructor() {
     this.meta.updateTag({ name: 'description', content: this.t()['metaSearch'] });
@@ -30,7 +31,7 @@ export class Search implements OnInit {
   ngOnInit(): void {
     this.titleService.getTitles().subscribe({
       next: (data: Title[]) => this.catalog.set(data),
-      error: (err: unknown) => console.error('Error loading the catalog:', err)
+      error: () => this.feedback.set(this.t()['genericError'])
     });
   }
 
@@ -52,6 +53,6 @@ export class Search implements OnInit {
     };
 
     this.listService.addItem(newItem);
-    alert(`"${movie.title}" added to your list!`);
+    this.feedback.set(this.t()['savedOk']);
   }
 }
